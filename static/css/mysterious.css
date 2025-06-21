@@ -1,0 +1,262 @@
+/* Mysterious Theme Styles */
+:root {
+    --mysterious-bg: #0a0a0a;
+    --mysterious-card-bg: rgba(20, 20, 20, 0.9);
+    --mysterious-accent: #8b5a3c;
+    --mysterious-gold: #d4af37;
+    --mysterious-text: #e0e0e0;
+    --mysterious-text-dim: #999;
+    --mysterious-border: rgba(212, 175, 55, 0.3);
+    --mysterious-shadow: rgba(212, 175, 55, 0.2);
+}
+
+body.mysterious-theme {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d1421 100%);
+    color: var(--mysterious-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.mysterious-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 90, 60, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.mysterious-card {
+    background: var(--mysterious-card-bg);
+    border: 2px solid var(--mysterious-border);
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 50px var(--mysterious-shadow),
+        inset 0 1px 0 rgba(212, 175, 55, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.mysterious-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--mysterious-gold), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.vault-icon {
+    position: relative;
+}
+
+.mysterious-icon {
+    width: 4rem;
+    height: 4rem;
+    color: var(--mysterious-gold);
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5)); }
+    to { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8)); }
+}
+
+.mysterious-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--mysterious-gold);
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    letter-spacing: 3px;
+    margin-bottom: 0.5rem;
+}
+
+.mysterious-subtitle {
+    color: var(--mysterious-text-dim);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.mysterious-form {
+    position: relative;
+}
+
+.mysterious-label {
+    color: var(--mysterious-gold);
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.mysterious-input {
+    background: rgba(0, 0, 0, 0.6) !important;
+    border: 2px solid rgba(212, 175, 55, 0.3) !important;
+    color: var(--mysterious-text) !important;
+    border-radius: 10px !important;
+    padding: 1rem !important;
+    font-size: 1.1rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.mysterious-input:focus {
+    border-color: var(--mysterious-gold) !important;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3) !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.mysterious-input::placeholder {
+    color: rgba(224, 224, 224, 0.5) !important;
+}
+
+.mysterious-btn {
+    background: linear-gradient(135deg, var(--mysterious-accent), var(--mysterious-gold));
+    border: none;
+    color: #000;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+}
+
+.mysterious-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+    color: #000;
+}
+
+.mysterious-btn:active {
+    transform: translateY(0);
+}
+
+.mysterious-hint {
+    color: var(--mysterious-text-dim);
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mysterious-link {
+    color: var(--mysterious-gold);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.mysterious-link:hover {
+    color: var(--mysterious-text);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+}
+
+/* Loading Animation */
+.mysterious-loading {
+    padding: 3rem;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(212, 175, 55, 0.3);
+    border-top: 4px solid var(--mysterious-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Flash Messages */
+.flash-messages .alert {
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid var(--mysterious-border);
+    color: var(--mysterious-text);
+    border-radius: 10px;
+}
+
+.flash-messages .alert-danger {
+    border-color: rgba(220, 53, 69, 0.5);
+    background: rgba(139, 0, 0, 0.2);
+}
+
+.flash-messages .alert-info {
+    border-color: rgba(13, 202, 240, 0.5);
+    background: rgba(0, 123, 255, 0.2);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .mysterious-card {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .mysterious-title {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+    
+    .mysterious-icon {
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    .mysterious-input {
+        font-size: 1rem !important;
+        padding: 0.8rem !important;
+    }
+    
+    .mysterious-btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+/* File Input Styling */
+.mysterious-input[type="file"] {
+    padding: 0.8rem !important;
+    cursor: pointer;
+}
+
+.mysterious-input[type="file"]::-webkit-file-upload-button {
+    background: linear-gradient(135deg, var(--mysterious-accent), var(--mysterious-gold));
+    border: none;
+    color: #000;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin-right: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.mysterious-input[type="file"]::-webkit-file-upload-button:hover {
+    opacity: 0.9;
+}

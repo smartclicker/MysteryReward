@@ -38,13 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update button text to show file selected
             uploadBtn.innerHTML = '<i data-feather="check" class="me-2"></i>PHOTO SELECTED - SUBMIT';
             feather.replace();
-            
-            // Auto-trigger upload after a short delay for better UX
-            setTimeout(() => {
-                if (photoInput.files[0] === file) { // Make sure file hasn't changed
-                    uploadForm.dispatchEvent(new Event('submit'));
-                }
-            }, 1000);
         }
     });
 
@@ -62,7 +55,21 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
+        .then(response => {
+            console.log('Response status:', response.status);
+            if (!response.ok) {
+                return response.text().then(text => {
+                    let errorData;
+                    try {
+                        errorData = JSON.parse(text);
+                    } catch (e) {
+                        errorData = { error: text };
+                    }
+                    return Promise.reject(errorData);
+                });
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.success) {
                 // Success - add dramatic pause then redirect
@@ -75,7 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Upload error:', error);
-            showError(error.message || 'Failed to upload photo. Please try again.');
+            const errorMessage = error.error || error.message || 'Failed to upload photo. Please try again.';
+            showError(errorMessage);
             
             // Reset to upload form
             uploadSection.style.display = 'block';

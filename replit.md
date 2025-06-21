@@ -124,7 +124,9 @@ The application is structured to easily accommodate:
 
 ## Changelog
 - June 21, 2025. Initial setup
+- June 21, 2025. Complete German translation implemented
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Language preference: German interface and content.

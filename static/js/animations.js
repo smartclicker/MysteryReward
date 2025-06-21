@@ -258,7 +258,7 @@ document.querySelectorAll('form').forEach(form => {
         const submitButton = form.querySelector('button[type="submit"]');
         if (submitButton && !submitButton.disabled) {
             const originalText = submitButton.innerHTML;
-            submitButton.innerHTML = '<i data-feather="loader" class="me-2"></i>Processing...';
+            submitButton.innerHTML = '<i data-feather="loader" class="me-2"></i>Verarbeitung...';
             submitButton.disabled = true;
             feather.replace();
             

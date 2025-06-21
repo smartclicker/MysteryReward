@@ -29,14 +29,14 @@ def login():
         app.logger.info(f"User logged in with session ID: {session['user_id']}")
         return redirect(url_for('upload'))
     else:
-        flash('Please enter a password to continue', 'error')
+        flash('Bitte geben Sie ein Passwort ein, um fortzufahren', 'error')
         return redirect(url_for('index'))
 
 @app.route('/upload')
 def upload():
     """Upload page - requires login"""
     if not session.get('logged_in'):
-        flash('Please log in first', 'error')
+        flash('Bitte melden Sie sich zuerst an', 'error')
         return redirect(url_for('index'))
     
     return render_template('upload.html')
@@ -45,15 +45,15 @@ def upload():
 def upload_photo():
     """Handle photo upload"""
     if not session.get('logged_in'):
-        return jsonify({'error': 'Not logged in'}), 401
+        return jsonify({'error': 'Nicht angemeldet'}), 401
     
     if 'photo' not in request.files:
-        return jsonify({'error': 'No file uploaded'}), 400
+        return jsonify({'error': 'Keine Datei hochgeladen'}), 400
     
     file = request.files['photo']
     
     if file.filename == '':
-        return jsonify({'error': 'No file selected'}), 400
+        return jsonify({'error': 'Keine Datei ausgewählt'}), 400
     
     if file and allowed_file(file.filename):
         # Generate unique filename
@@ -68,19 +68,19 @@ def upload_photo():
             return jsonify({'success': True, 'filename': unique_filename})
         except Exception as e:
             app.logger.error(f"Error saving file: {str(e)}")
-            return jsonify({'error': 'Failed to save file'}), 500
+            return jsonify({'error': 'Fehler beim Speichern der Datei'}), 500
     else:
-        return jsonify({'error': 'Invalid file type. Please upload a valid image.'}), 400
+        return jsonify({'error': 'Ungültiger Dateityp. Bitte laden Sie ein gültiges Bild hoch.'}), 400
 
 @app.route('/result')
 def result():
     """Result page showing gift voucher"""
     if not session.get('logged_in'):
-        flash('Please log in first', 'error')
+        flash('Bitte melden Sie sich zuerst an', 'error')
         return redirect(url_for('index'))
     
     if not session.get('uploaded_photo'):
-        flash('Please upload a photo first', 'error')
+        flash('Bitte laden Sie zuerst ein Foto hoch', 'error')
         return redirect(url_for('upload'))
     
     return render_template('result.html')
@@ -89,13 +89,13 @@ def result():
 def logout():
     """Clear session and return to login"""
     session.clear()
-    flash('You have been logged out', 'info')
+    flash('Sie wurden abgemeldet', 'info')
     return redirect(url_for('index'))
 
 @app.errorhandler(413)
 def too_large(e):
     """Handle file too large error"""
-    return jsonify({'error': 'File too large. Maximum size is 16MB.'}), 413
+    return jsonify({'error': 'Datei zu groß. Maximale Größe beträgt 16MB.'}), 413
 
 @app.errorhandler(404)
 def not_found(e):

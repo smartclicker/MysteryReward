@@ -12,19 +12,19 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const file = photoInput.files[0];
         if (!file) {
-            showError('Please select a photo to upload.');
+            showError('Bitte wählen Sie ein Foto zum Hochladen aus.');
             return;
         }
         
         // Validate file type
         if (!isValidImageType(file)) {
-            showError('Please upload a valid image file (PNG, JPG, JPEG, GIF, or WebP).');
+            showError('Bitte laden Sie eine gültige Bilddatei hoch (PNG, JPG, JPEG, GIF oder WebP).');
             return;
         }
         
         // Validate file size (16MB max)
         if (file.size > 16 * 1024 * 1024) {
-            showError('File size too large. Please upload an image smaller than 16MB.');
+            showError('Datei zu groß. Bitte laden Sie ein Bild kleiner als 16MB hoch.');
             return;
         }
         
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const file = e.target.files[0];
         if (file) {
             // Update button text to show file selected
-            uploadBtn.innerHTML = '<i data-feather="check" class="me-2"></i>PHOTO SELECTED - SUBMIT';
+            uploadBtn.innerHTML = '<i data-feather="check" class="me-2"></i>FOTO AUSGEWÄHLT - EINREICHEN';
             feather.replace();
         }
     });
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Upload error:', error);
-            const errorMessage = error.error || error.message || 'Failed to upload photo. Please try again.';
+            const errorMessage = error.error || error.message || 'Foto-Upload fehlgeschlagen. Bitte versuchen Sie es erneut.';
             showError(errorMessage);
             
             // Reset to upload form
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function resetUploadButton() {
-        uploadBtn.innerHTML = '<i data-feather="upload" class="me-2"></i>SUBMIT EVIDENCE';
+        uploadBtn.innerHTML = '<i data-feather="upload" class="me-2"></i>BEWEIS EINREICHEN';
         feather.replace();
     }
 

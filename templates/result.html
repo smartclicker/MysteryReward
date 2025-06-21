@@ -1,6 +1,6 @@
 {% extends "base_celebratory.html" %}
 
-{% block title %}Your Gift Awaits!{% endblock %}
+{% block title %}Ihr Geschenk wartet!{% endblock %}
 
 {% block content %}
 <div class="text-center">
@@ -8,8 +8,8 @@
         <div class="gift-icon mb-3">
             <i data-feather="gift" class="celebratory-icon"></i>
         </div>
-        <h1 class="celebratory-title">🎉 CONGRATULATIONS! 🎉</h1>
-        <p class="celebratory-subtitle">You've successfully completed the mystery challenge!</p>
+        <h1 class="celebratory-title">🎉 HERZLICHEN GLÜCKWUNSCH! 🎉</h1>
+        <p class="celebratory-subtitle">Sie haben die Rätsel-Herausforderung erfolgreich gemeistert!</p>
     </div>
     
     <div class="gift-voucher-container mb-4">
@@ -17,7 +17,7 @@
             <div class="voucher-header">
                 <h2 class="voucher-title">
                     <i data-feather="star" class="me-2"></i>
-                    SPECIAL GIFT VOUCHER
+                    SPEZIELLER GESCHENKGUTSCHEIN
                     <i data-feather="star" class="ms-2"></i>
                 </h2>
             </div>
@@ -27,20 +27,20 @@
                     <i data-feather="award" class="voucher-main-icon"></i>
                 </div>
                 
-                <h3 class="voucher-prize">🎁 YOUR AMAZING PRIZE 🎁</h3>
+                <h3 class="voucher-prize">🎁 IHR FANTASTISCHER PREIS 🎁</h3>
                 
                 <div class="voucher-details">
                     <p class="voucher-text">
-                        This voucher entitles you to claim your special reward!
+                        Dieser Gutschein berechtigt Sie dazu, Ihre besondere Belohnung einzulösen!
                     </p>
                     
                     <div class="voucher-code">
-                        <strong>VOUCHER CODE: MYSTERY2025</strong>
+                        <strong>GUTSCHEIN-CODE: RAETSEL2025</strong>
                     </div>
                 </div>
                 
                 <div class="voucher-footer">
-                    <small>Valid until presented • Non-transferable</small>
+                    <small>Gültig bis zur Vorlage • Nicht übertragbar</small>
                 </div>
             </div>
         </div>
@@ -49,13 +49,13 @@
     <div class="celebration-actions">
         <button class="btn celebratory-btn mb-3" onclick="shareResult()">
             <i data-feather="share-2" class="me-2"></i>
-            Share Your Success
+            Erfolg teilen
         </button>
         
         <div>
             <a href="{{ url_for('logout') }}" class="celebratory-link">
                 <i data-feather="home" class="me-1"></i>
-                Return to Vault
+                Zurück zum Tresor
             </a>
         </div>
     </div>
@@ -78,14 +78,14 @@ document.addEventListener('DOMContentLoaded', function() {
 function shareResult() {
     if (navigator.share) {
         navigator.share({
-            title: 'I completed the mystery challenge!',
-            text: 'Just unlocked a special gift voucher from the mysterious vault!',
+            title: 'Ich habe die Rätsel-Herausforderung gemeistert!',
+            text: 'Habe gerade einen besonderen Geschenkgutschein aus dem geheimnisvollen Tresor erhalten!',
             url: window.location.href
         });
     } else {
         // Fallback for browsers that don't support Web Share API
         const url = window.location.href;
-        const text = 'I completed the mystery challenge and won a gift voucher!';
+        const text = 'Ich habe die Rätsel-Herausforderung gemeistert und einen Geschenkgutschein gewonnen!';
         const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
         window.open(shareUrl, '_blank');
     }

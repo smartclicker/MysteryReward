@@ -126,6 +126,7 @@ The application is structured to easily accommodate:
 - June 21, 2025. Initial setup
 - June 21, 2025. Complete German translation implemented
 - June 25, 2025. Added tresor image integration and hints page with flip cards
+- June 25, 2025. Enhanced tresor background integration with immersive safe atmosphere
 
 ## User Preferences
 

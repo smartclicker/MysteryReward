@@ -125,6 +125,7 @@ The application is structured to easily accommodate:
 ## Changelog
 - June 21, 2025. Initial setup
 - June 21, 2025. Complete German translation implemented
+- June 25, 2025. Added tresor image integration and hints page with flip cards
 
 ## User Preferences
 

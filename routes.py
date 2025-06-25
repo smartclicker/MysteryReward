@@ -16,6 +16,11 @@ def index():
     """Landing page with login form"""
     return render_template('login.html')
 
+@app.route('/hints')
+def hints():
+    """Hints page - accessible without login"""
+    return render_template('hints.html')
+
 @app.route('/login', methods=['POST'])
 def login():
     """Handle login form submission"""

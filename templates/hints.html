@@ -1,0 +1,61 @@
+{% extends "base_mysterious.html" %}
+
+{% block title %}Hinweise{% endblock %}
+
+{% block content %}
+<div class="text-center mb-4">
+    <h1 class="mysterious-title">HINWEISE</h1>
+    <p class="mysterious-subtitle">Klicken Sie auf die Karten, um die Hinweise zu enthüllen</p>
+</div>
+
+<div class="hints-grid">
+    {% for station in range(1, 7) %}
+        {% for hint in range(1, 4) %}
+            <div class="hint-card" data-station="{{ station }}" data-hint="{{ hint }}">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-header">
+                            <i data-feather="help-circle" class="hint-icon"></i>
+                        </div>
+                        <div class="card-title">
+                            Hinweis {{ hint }}
+                        </div>
+                        <div class="card-subtitle">
+                            Station {{ station }}
+                        </div>
+                        <div class="card-action">
+                            <small>Klicken zum Enthüllen</small>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-header">
+                            <i data-feather="lightbulb" class="hint-icon revealed"></i>
+                        </div>
+                        <div class="hint-content">
+                            <h4>Station {{ station }} - Hinweis {{ hint }}</h4>
+                            <p class="hint-text" id="hint-{{ station }}-{{ hint }}">
+                                Dies ist der Hinweistext für Station {{ station }}, Hinweis {{ hint }}. 
+                                Hier steht wichtige Information für das Rätsel.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <small>Klicken zum Verstecken</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>
+
+<div class="text-center mt-4">
+    <a href="{{ url_for('index') }}" class="mysterious-link">
+        <i data-feather="arrow-left" class="me-1"></i>
+        Zurück zum Tresor
+    </a>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/hints.js') }}"></script>
+{% endblock %}

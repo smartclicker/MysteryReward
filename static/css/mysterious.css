@@ -66,6 +66,59 @@ body.mysterious-theme {
     position: relative;
 }
 
+/* Tresor Image Styles */
+.vault-image {
+    position: relative;
+    display: inline-block;
+}
+
+.tresor-image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.8),
+        0 0 30px var(--mysterious-shadow),
+        inset 0 2px 5px rgba(212, 175, 55, 0.2);
+    filter: contrast(1.1) brightness(0.9);
+    transition: all 0.3s ease;
+}
+
+.tresor-image:hover {
+    filter: contrast(1.2) brightness(1.0);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.9),
+        0 0 50px var(--mysterious-shadow);
+}
+
+.tresor-image.small {
+    max-width: 200px;
+}
+
+.camera-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    padding: 15px;
+    backdrop-filter: blur(5px);
+    animation: pulse-overlay 2s ease-in-out infinite;
+}
+
+@keyframes pulse-overlay {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 1;
+    }
+}
+
 .mysterious-icon {
     width: 4rem;
     height: 4rem;
@@ -212,6 +265,134 @@ body.mysterious-theme {
     background: rgba(0, 123, 255, 0.2);
 }
 
+/* Hints Page Styles */
+.hints-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hint-card {
+    perspective: 1000px;
+    height: 200px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 20px var(--mysterious-shadow),
+        inset 0 1px 0 rgba(212, 175, 55, 0.2);
+}
+
+.card-front {
+    background: var(--mysterious-card-bg);
+    border: 2px solid var(--mysterious-border);
+}
+
+.card-back {
+    background: linear-gradient(135deg, var(--mysterious-card-bg), rgba(139, 90, 60, 0.3));
+    border: 2px solid var(--mysterious-gold);
+    transform: rotateY(180deg);
+}
+
+.card-header {
+    margin-bottom: 1rem;
+}
+
+.hint-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--mysterious-gold);
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+}
+
+.hint-icon.revealed {
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% { 
+        filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+    }
+    50% { 
+        filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.9));
+    }
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--mysterious-gold);
+    margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+    font-size: 1.1rem;
+    color: var(--mysterious-text-dim);
+    font-style: italic;
+}
+
+.card-action {
+    margin-top: auto;
+    color: var(--mysterious-text-dim);
+    font-size: 0.9rem;
+}
+
+.hint-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hint-content h4 {
+    color: var(--mysterious-gold);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.hint-text {
+    color: var(--mysterious-text);
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.hint-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Hover effects for hint cards */
+.hint-card:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.hint-card.flipped:hover {
+    transform: translateY(-3px) scale(1.01);
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .mysterious-card {
@@ -237,6 +418,40 @@ body.mysterious-theme {
     .mysterious-btn {
         font-size: 1rem;
         padding: 0.8rem 1.5rem;
+    }
+    
+    .tresor-image {
+        max-width: 250px;
+    }
+    
+    .tresor-image.small {
+        max-width: 150px;
+    }
+    
+    .hints-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+    
+    .hint-card {
+        height: 180px;
+    }
+    
+    .card-front, .card-back {
+        padding: 1rem;
+    }
+    
+    .card-title {
+        font-size: 1.1rem;
+    }
+    
+    .hint-content h4 {
+        font-size: 1rem;
+    }
+    
+    .hint-text {
+        font-size: 0.9rem;
     }
 }
 
